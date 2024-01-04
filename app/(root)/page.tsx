@@ -5,7 +5,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <main>
-      <Button variant={'destructive'} className='mx-10 my-10' >Hello this is testing</Button>
+      <Button variant={'destructive'} className='mx-10 my-10' >Hello this testing</Button>
     </main>
   )
 }
