@@ -6,6 +6,8 @@ let cached = (global as any).mongoose || {conn:null  , promise:null}
 
 
 export const connectToDatabase = async ()=>{
+    console.log("Databse function called");
+    
     if(cached.conn) return cached.conn;
 
     if(!MONGODB_URI) throw new Error("Mongo Uri is missing");
@@ -14,7 +16,8 @@ export const connectToDatabase = async ()=>{
         dbName:'TECH-TALK',
         bufferCommands:false
     });
-
+    console.log("Database is connected");
+    
     cached.conn = await cached.promise;
 
     return cached.conn;

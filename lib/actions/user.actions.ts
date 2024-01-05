@@ -8,8 +8,8 @@ import User from "../mongodb/database/models/user.model"
 export const createuser =  async(user : createUserParams)=>{
     try {
         await connectToDatabase();
-        console.log("User is creating");
-        
+        alert("Database connected");
+       
         const newUser = await User.create(user);
         return JSON.parse(JSON.stringify(newUser));
 
