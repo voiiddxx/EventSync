@@ -57,6 +57,9 @@ export async function POST(req: Request) {
   if(eventType=='user.created'){
     const {id , email_addresses , image_url , first_name , last_name , username} = evt.data;
 
+    console.log("user created and webhook is working");
+    
+
     const user = {
       clerkId:id,
       email:email_addresses[0].email_address,
@@ -66,6 +69,9 @@ export async function POST(req: Request) {
       avatar:image_url,
     }
 
+    console.log("calling the action of creating user at backend");
+    
+
     const newUser = await createuser(user);
 
     if(newUser){
@@ -73,6 +79,9 @@ export async function POST(req: Request) {
         publicMetadata:newUser._id
       })
     }
+
+    console.log("user created successfully");
+    
     return NextResponse.json({ message: 'OK', user: newUser })
   }
 
