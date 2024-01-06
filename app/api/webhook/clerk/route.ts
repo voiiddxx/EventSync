@@ -54,54 +54,15 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-  if(eventType=='user.created'){
-    alert("user created using clerk");
-    const {id , email_addresses , image_url , first_name , last_name , username} = evt.data;
-
-   
-    console.log(id , email_addresses , image_url);
-    
-
-    const user = {
-      clerkId:id,
-      email:email_addresses[0].email_address,
-      firstname:first_name,
-      lastname:last_name,
-      username:username!,
-      avatar:image_url,
+    if(eventType=='user.created'){
+      console.log("account created and webhook is working");
     }
-
-
-    
-
-    const newUser = await createuser(user);
-
-    if(newUser){
-      await clerkClient.users.updateUserMetadata(id , {
-        publicMetadata:newUser._id
-      })
+    else{
+      console.log("there is some problem we have to solve it");
+      
     }
-
     
-    return NextResponse.json({ message: 'OK', user: newUser })
-  }
 
 
-  if(eventType=='user.updated'){
-    const {id , first_name , last_name  , username , image_url} = evt.data;
-
-    const user = {
-      firstname:first_name,
-      lastname:last_name,
-      username:username!,
-      avatar:image_url
-    }
-
-    const updateUser = UpdateUser(id , user);
-    return NextResponse.json({message:'OK' , user:updateUser});
-
-    
-  }
- 
   return new Response('', { status: 200 })
 }
