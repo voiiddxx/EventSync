@@ -54,12 +54,28 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-    if(eventType=='user.created'){
-      console.log("account created and webhook is working");
+
+  if(eventType === 'user.created') {
+    const { id, email_addresses, image_url, first_name, last_name, username } = evt.data;
+
+    const user = {
+      clerkId:id,
+    firstname:first_name,
+    lastname:last_name,
+    email:email_addresses[0].email_address,
+    username:username!,
+    avatar:image_url
     }
-    else{
-      console.log("there is some problem we have to solve it");
-      
+
+    const newUser = await createuser(user);
+    if(newUser) {
+      await clerkClient.users.updateUserMetadata(id, {
+        publicMetadata: {
+          userId: newUser._id
+        }
+      })
+    }
+    return NextResponse.json({ message: 'OK', user: newUser })
     }
     
 
