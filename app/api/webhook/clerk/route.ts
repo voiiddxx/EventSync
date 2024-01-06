@@ -56,11 +56,11 @@ export async function POST(req: Request) {
 
 
   if(eventType === 'user.created') {
+    console.log("everything is working fine");
     
-    alert("user created");
     }
     
 
 
-  return new Response('', { status: 200 })
 }
+
