@@ -1,4 +1,29 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models , Document} from "mongoose";
+
+
+export interface IOrder extends Document {
+     createdAt:Date,
+     stripeID:string,
+     totalamount:string,
+     event:{
+        _id:string,
+        title:string
+     },
+     buyer:{
+        _id:string,
+        firstname:string,
+        lastname:string 
+     }
+}
+
+export type IorderItem = {
+    _id:string,
+    totalamount:string,
+    createdAt:Date,
+    eventTitle:string,
+    eventID:string,
+    buyer:string,
+}
 
 const orderSchema = new Schema({
     createdAt:{

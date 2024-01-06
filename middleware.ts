@@ -8,11 +8,11 @@ export default authMiddleware({
         '/',
         '/events',
         'events/:id',
-        "/api/webhook/clerk",
+        '/api/webhook/clerk',
         'api/webhook/stripe',
     ],
     ignoredRoutes:[
-      "/api/webhook/clerk",
+      '/api/webhook/clerk',
       'api/webhook/stripe',
     ]
 });
